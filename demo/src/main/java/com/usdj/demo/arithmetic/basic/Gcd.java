@@ -12,25 +12,27 @@ public class Gcd {
 	 * 性质1 如果a>b，则a和b与a-b和b的最大公约数相同，即Gcd(a, b) = Gcd(a-b, b)
 	 * 性质2 如果b>a，则a和b与a和b-a的最大公约数相同，即Gcd(a, b) = Gcd(a, b-a)
 	 * 性质3 如果a=b，则a和b的最大公约数与a值和b值相同，即Gcd(a, b) = a = b
-	 * 递归相减法
+	 * 递归相减法求最大公约数
+	 *
 	 * @param x
 	 * @param y
 	 * @return
 	 */
 	public static int gcd01(int x, int y) {
-		if (x<=0 || y<=0) {
+		if (x <= 0 || y <= 0) {
 			return -1;
 		} else if (x > y) {
-			return gcd01(x-y, y);
+			return gcd01(x - y, y);
 		} else if (x < y) {
-			return gcd01(x, y-x);
+			return gcd01(x, y - x);
 		} else {
 			return x;
 		}
 	}
 
 	/**
-	 * 辗转相除法
+	 * 辗转相除法求最大公约数
+	 *
 	 * @param x
 	 * @param y
 	 * @return
@@ -41,7 +43,7 @@ public class Gcd {
 			y ^= x;
 			x ^= y;
 		}
-		while (y!=0) {
+		while (y != 0) {
 			if (x == y) {
 				return x;
 			} else {
@@ -51,5 +53,16 @@ public class Gcd {
 			}
 		}
 		return x;
+	}
+
+	/**
+	 * 求最小公倍数，就是s = x * y /m
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public static int gcm(int x, int y) {
+		int m = gcd02(x, y);
+		return x * y / m;
 	}
 }
